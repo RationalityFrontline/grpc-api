@@ -17,7 +17,9 @@ val GITHUB_REPO = "RationalityFrontline/grpc-api"
 publishing {
     publications {
         create<MavenPublication>("mavenPublish") {
-
+            artifact(file("libs/grpc-api-1.32.1-sources.jar")) {
+                classifier = "sources"
+            }
             artifact(file("libs/grpc-api-1.32.1.jar"))
             pom {
                 name.set(NAME)
