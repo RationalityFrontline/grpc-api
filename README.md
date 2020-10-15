@@ -14,8 +14,16 @@ repositories {
     jcenter()
 }
 
+val grpcVersion = "1.32.2"
+//val grpcKotlinVersion = "0.2.0"
+
 dependencies {
-    implementation("org.rationalityfrontline.grpc:grpc-api:1.32.1")
+    implementation("org.rationalityfrontline.grpc:grpc-api:$grpcVersion")
+    //implementation("io.grpc:grpc-netty-shaded:$grpcVersion")
+    //implementation("io.grpc:grpc-stub:$grpcVersion")
+    //implementation("io.grpc:grpc-protobuf:$grpcVersion")
+    //implementation("io.grpc:grpc-kotlin-stub:$grpcKotlinVersion")
+    //implementation("javax.annotation:javax.annotation-api:1.3.2")
 }
 
 configurations.all {
