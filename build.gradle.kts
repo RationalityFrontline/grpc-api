@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.rationalityfrontline.grpc"
-version = "1.32.1"
+version = "1.32.2"
 
 val NAME = project.name
 val DESC = "Merged grpc-api and grpc-context into a single jar"
@@ -17,10 +17,10 @@ val GITHUB_REPO = "RationalityFrontline/grpc-api"
 publishing {
     publications {
         create<MavenPublication>("mavenPublish") {
-            artifact(file("libs/grpc-api-1.32.1-sources.jar")) {
+            artifact(file("libs/grpc-api-$version-sources.jar")) {
                 classifier = "sources"
             }
-            artifact(file("libs/grpc-api-1.32.1.jar"))
+            artifact(file("libs/grpc-api-$version.jar"))
             pom {
                 name.set(NAME)
                 description.set("$NAME $version - $DESC")
