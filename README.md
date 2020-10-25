@@ -14,7 +14,7 @@ repositories {
     jcenter()
 }
 
-val grpcVersion = "1.32.2"
+val grpcVersion = "1.33.0"
 //val grpcKotlinVersion = "0.2.0"
 
 dependencies {
