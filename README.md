@@ -6,10 +6,11 @@ It solves the split package problem mentioned in the issue by merging `grpc-api`
 ## Usage
 
 Just add the following code blocks to your build.gradle.kts file.
+(First exclude your dependency of "grpc-context" and "grpc-api", then add this library as a dependency)
 
 **Gradle Kotlin DSL:**
 
-```groovy
+```kotlin
 repositories {
     jcenter()
 }
