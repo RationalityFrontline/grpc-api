@@ -1,4 +1,5 @@
-# grpc-api  [![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/grpc/grpc-api?label=JCenter)](https://bintray.com/rationalityfrontline/grpc/grpc-api)  [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/grpc-api)](https://github.com/RationalityFrontline/grpc-api/blob/master/LICENSE)
+# grpc-api  
+[![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/grpc/grpc-api?label=JCenter)](https://bintray.com/rationalityfrontline/grpc/grpc-api)  [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/grpc-api)](https://github.com/RationalityFrontline/grpc-api/blob/master/LICENSE)
 
 This library is a temporary workaround for the issue ["gRPC Java is not usable from Java 9 modules"](https://github.com/grpc/grpc-java/issues/3522). 
 It solves the split package problem mentioned in the issue by merging `grpc-api` and `grpc-context` into a single jar.
@@ -15,8 +16,8 @@ repositories {
     jcenter()
 }
 
-val grpcVersion = "1.33.1"
-//val grpcKotlinVersion = "0.2.0"
+val grpcVersion = "1.34.0"
+//val grpcKotlinVersion = "0.2.1"
 
 dependencies {
     implementation("org.rationalityfrontline.grpc:grpc-api:$grpcVersion")
