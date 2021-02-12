@@ -1,5 +1,5 @@
 # grpc-api  
-[![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/grpc/grpc-api?label=JCenter)](https://bintray.com/rationalityfrontline/grpc/grpc-api)  [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/grpc-api)](https://github.com/RationalityFrontline/grpc-api/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/org.rationalityfrontline.workaround/grpc-api.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.rationalityfrontline.workaround%22%20AND%20a:%22grpc-api%22)  [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/grpc-api)](https://github.com/RationalityFrontline/grpc-api/blob/master/LICENSE)
 
 This library is a temporary workaround for the issue ["gRPC Java is not usable from Java 9 modules"](https://github.com/grpc/grpc-java/issues/3522). 
 It solves the split package problem mentioned in the issue by merging `grpc-api` and `grpc-context` into a single jar.
@@ -13,26 +13,16 @@ Just add the following code blocks to your build.gradle.kts file.
 
 ```kotlin
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
-val grpcVersion = "1.34.0"
-//val grpcKotlinVersion = "0.2.1"
-
 dependencies {
-    implementation("org.rationalityfrontline.grpc:grpc-api:$grpcVersion")
-    //implementation("io.grpc:grpc-netty-shaded:$grpcVersion")
-    //implementation("io.grpc:grpc-stub:$grpcVersion")
-    //implementation("io.grpc:grpc-protobuf:$grpcVersion")
-    //implementation("io.grpc:grpc-kotlin-stub:$grpcKotlinVersion")
-    //implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("org.rationalityfrontline.workaround:grpc-api:1.35.0")
 }
 
 configurations.all {
     exclude(group = "io.grpc", module = "grpc-context")
     exclude(group = "io.grpc", module = "grpc-api")
-    //uncomment the following line if you have "javax.annotation:javax.annotation-api" in your dependencies.
-    //exclude(group = "com.google.code.findbugs", module = "jsr305")
 }
 ```
 

@@ -1,29 +1,28 @@
-import com.jfrog.bintray.gradle.BintrayExtension.PackageConfig
-import com.jfrog.bintray.gradle.BintrayExtension.VersionConfig
-import java.util.Date
-
 plugins {
     `maven-publish`
-    id("com.jfrog.bintray") version "1.8.5"
+    signing
 }
 
-group = "org.rationalityfrontline.grpc"
-version = "1.34.0"
-
+group = "org.rationalityfrontline.workaround"
+version = "1.35.0"
 val NAME = project.name
 val DESC = "Merged grpc-api and grpc-context into a single jar"
 val GITHUB_REPO = "RationalityFrontline/grpc-api"
 
 publishing {
     publications {
-        create<MavenPublication>("mavenPublish") {
+        create<MavenPublication>("maven") {
             artifact(file("libs/grpc-api-$version-sources.jar")) {
                 classifier = "sources"
+            }
+            artifact(file("libs/grpc-api-$version-javadoc.jar")) {
+                classifier = "javadoc"
             }
             artifact(file("libs/grpc-api-$version.jar"))
             pom {
                 name.set(NAME)
-                description.set("$NAME $version - $DESC")
+                description.set(DESC)
+                packaging = "jar"
                 url.set("https://github.com/$GITHUB_REPO")
                 licenses {
                     license {
@@ -35,44 +34,36 @@ publishing {
                     developer {
                         name.set("RationalityFrontline")
                         email.set("rationalityfrontline@gmail.com")
+                        organization.set("RationalityFrontline")
+                        organizationUrl.set("https://github.com/RationalityFrontline")
                     }
                 }
                 scm {
-                    url.set("https://github.com/$GITHUB_REPO")
+                    connection.set("scm:git:git://github.com/$GITHUB_REPO.git")
+                    developerConnection.set("scm:git:ssh://github.com:$GITHUB_REPO.git")
+                    url.set("https://github.com/$GITHUB_REPO/tree/master")
                 }
+            }
+        }
+    }
+    repositories {
+        fun env(propertyName: String): String {
+            return if (project.hasProperty(propertyName)) {
+                project.property(propertyName) as String
+            } else "Unknown"
+        }
+        maven {
+            val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+            credentials {
+                username = env("ossrhUsername")
+                password = env("ossrhPassword")
             }
         }
     }
 }
 
-bintray {
-    fun env(propertyName: String): String {
-        return if (project.hasProperty(propertyName)) {
-            project.property(propertyName) as String
-        } else "Unknown"
-    }
-
-    user = env("BINTRAY_USER")
-    key = env("BINTRAY_KEY")
-    publish = true
-    override = true
-    setPublications("mavenPublish")
-    pkg(closureOf<PackageConfig>{
-        repo = "grpc"
-        name = NAME
-        desc = DESC
-        setLabels("grpc", "grpc-api", "grpc-context", "jpms")
-        setLicenses("Apache-2.0")
-        publicDownloadNumbers = true
-        githubRepo = GITHUB_REPO
-        vcsUrl = "https://github.com/$githubRepo"
-        websiteUrl = vcsUrl
-        issueTrackerUrl = "$vcsUrl/issues"
-        version(closureOf<VersionConfig> {
-            name = "${project.version}"
-            desc = DESC
-            released = "${Date()}"
-            vcsTag = name
-        })
-    })
+signing {
+    sign(publishing.publications["maven"])
 }
