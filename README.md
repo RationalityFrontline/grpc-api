@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.rationalityfrontline.workaround:grpc-api:1.40.1")
+    implementation("org.rationalityfrontline.workaround:grpc-api:1.42.0")
 }
 
 configurations.all {
