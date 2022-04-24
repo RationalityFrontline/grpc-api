@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.rationalityfrontline.workaround"
-version = "1.42.0"
+version = "1.45.1"
 val NAME = project.name
 val DESC = "Merged grpc-api and grpc-context into a single jar"
 val GITHUB_REPO = "RationalityFrontline/grpc-api"

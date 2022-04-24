@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.rationalityfrontline.workaround:grpc-api:1.42.0")
+    implementation("org.rationalityfrontline.workaround:grpc-api:1.45.1")
 }
 
 configurations.all {
@@ -36,7 +36,7 @@ https://github.com/grpc/grpc-java/issues/3522
 grpc-api is released under the [Apache 2.0 license](https://github.com/RationalityFrontline/grpc-api/blob/master/LICENSE).
 
 ```
-Copyright 2020-2021 RationalityFrontline
+Copyright 2020-2022 RationalityFrontline
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
